@@ -43,15 +43,19 @@ btnEl.addEventListener("click", (event) => {
   const url = "https://www.omdbapi.com/?apikey=7035c60c&s=" + search;
   console.log(url);
 
+  const listEl = document.querySelector(".list");
+  //console.log(listEl);
+
   fetch(url)
     .then((res) => {
       return res.json();
     })
     .then((data) => {
       const ulEl = document.createElement("ul");
-      document.body.appendChild(ulEl);
-      //document.body.append(ul);
-      console.log(ulEl);
+      //document.body.appendChild(ulEl);
+      listEl.appendChild(ulEl);
+      //console.log(ulEl);
+
       data.Search.forEach((movie) => {
         //console.log(movie.Title, movie.Poster);
         const liEl = document.createElement("li");
@@ -59,7 +63,7 @@ btnEl.addEventListener("click", (event) => {
         //console.log(liEl);
         ulEl.appendChild(liEl);
         liEl.textContent = movie.Title;
-        ulEl.appendChild(imgEl);
+        liEl.appendChild(imgEl);
         imgEl.src = movie.Poster;
       });
     })
